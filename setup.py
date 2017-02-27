@@ -7,7 +7,7 @@ setup(
     version=prodcal.__version__,
     packages=find_packages(),
     description='Given module allows to use production calendars of different countries',
-    long_description=open(join(dirname(__file__), 'README.txt')).read(),
+    long_description=open(join(dirname(__file__), 'README.md')).read(),
     test_suite='tests',
     author='Vladimir Sidorov',
     author_email="vladimir.sidorov@raziogroup.com",
