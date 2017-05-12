@@ -1,6 +1,6 @@
 """Production calendar for Estonia"""
 
-from prod_dict import ProdDict
+from .prod_dict import ProdDict
 
 NON_WORK_DAY_DICT = ProdDict({
     2016: {1: [1],

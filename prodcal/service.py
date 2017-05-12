@@ -1,4 +1,8 @@
-from config import LOCALE_SUPPORTING
+from .config import LOCALE_SUPPORTING
+try:
+  basestring
+except NameError:
+  basestring = str
 from importlib import import_module
 from datetime import datetime, timedelta, date
 
@@ -47,13 +51,13 @@ def cast(start_date, end_date):
     return start_date, end_date
 
 def cast_single_date(args):
-    if isinstance(args, (str, date, unicode)):
+    if isinstance(args, (basestring, date, )):
         if isinstance(args, str):
             return get_date_today(args)
         elif isinstance(args, date):
             return args
     elif isinstance(args, (tuple, list)):
-        if isinstance(args[0], (str, unicode)):
+        if isinstance(args[0], (basestring, )):
             return get_date_today(args[0])
         elif isinstance(args[0], int):
             return date(*args)
