@@ -2,3 +2,4 @@
 dist
 .idea
 *.egg-info
+build/

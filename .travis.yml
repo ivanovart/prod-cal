@@ -1,0 +1,15 @@
+language: python
+python: 3.6
+
+install: echo "no installation required"
+
+script:
+  - ls -R .
+  - python tests.py
+
+deploy:
+  provider: pypi
+  user: ivart
+  password: $PYPI_PWD
+  on:
+    branch: master
