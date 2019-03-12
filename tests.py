@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from prodcal import ProdCal
-from datetime import date
-from prodcal.service import get_date_today
 import unittest
+from datetime import date
+
+from prodcal import ProdCal
+from prodcal.service import get_date_today
+
 
 class BasicTestCaseRU(unittest.TestCase):
     my_first_prod_cal = ProdCal(locale='RU')
@@ -370,6 +372,7 @@ class BasicTestCaseGE(unittest.TestCase):
         self.assertEqual(self.my_first_prod_cal.get_date_by_work_days('today', 21),
                          self.my_first_prod_cal.get_date_by_work_days(get_date_today('today'), 21))
 
+
 class BasicTestCaseEE(unittest.TestCase):
     my_first_prod_cal = ProdCal(locale='EE')
 
@@ -605,5 +608,7 @@ class AdvTest(unittest.TestCase):
 
     def test_date_by_work_time(self):
         self.assertEqual(self.my_first_prod_cal.get_date_by_work_time([2016, 4, 11], 40), date(2016, 4, 18))
+
+
 if __name__ == '__main__':
     unittest.main()

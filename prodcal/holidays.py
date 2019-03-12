@@ -1,9 +1,11 @@
-from calendar import weekday
-from .service import check_locale, get_prodcals, cast, cast_single_date
-from .config import DEFAULT_LOCALE, DEFAULT_TIME_PER_DAY
-from datetime import timedelta
 from calendar import Calendar
+from calendar import weekday
+from datetime import timedelta
 from math import ceil
+
+from .config import DEFAULT_LOCALE, DEFAULT_TIME_PER_DAY
+from .service import check_locale, get_prodcals, cast, cast_single_date
+
 
 class ProdCal(Calendar):
     def __init__(self, **kwargs):
@@ -26,8 +28,8 @@ class ProdCal(Calendar):
         start_date, end_date = cast(start_date, end_date)
         tm_delta = end_date - start_date
         work_days = 0
-        for day in range(tm_delta.days+1):
-            curr_date = start_date+timedelta(days=day)
+        for day in range(tm_delta.days + 1):
+            curr_date = start_date + timedelta(days=day)
             work_days += 1 if self.is_work_day(curr_date) else 0
         return work_days
 
@@ -43,7 +45,7 @@ class ProdCal(Calendar):
 
         holidays = 0
         for day in range(tm_delta):
-            curr_date = start_date+timedelta(days=day)
+            curr_date = start_date + timedelta(days=day)
             holidays += 1 if not self.is_work_day(curr_date) else 0
         return holidays
 
@@ -62,9 +64,9 @@ class ProdCal(Calendar):
 
     def count_work_time(self, start_date, end_date):
         start_date, end_date = cast(start_date, end_date)
-        return self.count_work_days(start_date, end_date)*self.time_per_day
+        return self.count_work_days(start_date, end_date) * self.time_per_day
 
     def get_date_by_work_time(self, start_date, count_time):
         start_date = cast_single_date(start_date)
         days = int(ceil(count_time / float(self.time_per_day)))
-        return self.get_date_by_work_days(start_date, days+1)
+        return self.get_date_by_work_days(start_date, days + 1)

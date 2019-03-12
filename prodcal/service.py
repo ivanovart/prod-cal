@@ -1,10 +1,12 @@
 from .config import LOCALE_SUPPORTING
+
 try:
-  basestring
+    basestring
 except NameError:
-  basestring = str
+    basestring = str
 from importlib import import_module
 from datetime import datetime, timedelta, date
+
 
 def check_locale(locale):
     if locale.upper() in LOCALE_SUPPORTING:
@@ -12,9 +14,11 @@ def check_locale(locale):
     else:
         raise ValueError("Unnsupported/Unknown locale")
 
+
 def get_prodcals(locale):
     pc = import_module('prodcal.prodcals.' + locale.lower())
     return pc.NON_WORK_DAY_DICT, pc.WORK_DAY_DICT
+
 
 def get_date_today(day):
     today = datetime.today().date()
@@ -26,8 +30,10 @@ def get_date_today(day):
         return today + timedelta(days=1)
     raise ValueError('Unknown string format', day)
 
+
 def calc_days_by_int(start_date, days_int):
     return start_date + timedelta(days=days_int)
+
 
 def cast(start_date, end_date):
     if isinstance(start_date, (tuple, list)) and isinstance(end_date, (tuple, list)):
@@ -50,14 +56,15 @@ def cast(start_date, end_date):
 
     return start_date, end_date
 
+
 def cast_single_date(args):
-    if isinstance(args, (basestring, date, )):
+    if isinstance(args, (basestring, date,)):
         if isinstance(args, str):
             return get_date_today(args)
         elif isinstance(args, date):
             return args
     elif isinstance(args, (tuple, list)):
-        if isinstance(args[0], (basestring, )):
+        if isinstance(args[0], (basestring,)):
             return get_date_today(args[0])
         elif isinstance(args[0], int):
             return date(*args)
