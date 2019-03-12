@@ -1,2 +1,5 @@
-from holidays import ProdCal
-__version__ = '0.1b7'
+try:
+    from .holidays import ProdCal
+except ModuleNotFoundError:
+    pass
+__version__ = '0.1b8'
